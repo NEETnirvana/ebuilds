@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.66
 DEPEND="${RDEPEND}"
 BDEPEND="dev-util/glib-utils
 	>=sys-devel/gettext-0.19.8
-	>=gui-libs/libadwaita-1.0.1
+	>=gui-libs/libadwaita-1.2.3
 	virtual/pkgconfig"
 
 pkg_postinst() {

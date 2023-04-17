@@ -10,7 +10,7 @@ HOMEPAGE="https://celluloid-player.github.io/"
 
 if [[ ${PV} != *9999* ]]; then
 SRC_URI="https://github.com/celluloid-player/celluloid/releases/download/v${PV}/${P}.tar.xz"
-KEYWORDS="~amd64 ~arm64 ~ppc64"
+KEYWORDS="amd64 ~arm64 ~ppc64"
 else
 	EGIT_REPO_URI="https://github.com/celluloid-player/celluloid.git"
 	inherit git-r3
