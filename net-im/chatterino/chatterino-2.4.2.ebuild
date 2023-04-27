@@ -27,6 +27,7 @@ RDEPEND="dev-qt/qtcore:5
 	dev-qt/qtnetwork:5
 	dev-qt/qtmultimedia:5
 	dev-qt/qtdbus:5
+	dev-libs/qtkeychain
 	dev-libs/openssl:="
 DEPEND="${RDEPEND}"
 
