@@ -3,27 +3,21 @@
 
 EAPI=8
 
-inherit cmake optfeature xdg-utils
+inherit git-r3 cmake optfeature xdg-utils
 
 DESCRIPTION="Chat client for https://twitch.tv"
 HOMEPAGE="https://chatterino.com/"
-SRC_URI="https://github.com/Chatterino/chatterino2/archive/v${PV}.tar.gz -> ${P}.tar.gz
-https://github.com/Chatterino/libcommuni/archive/a7b32cd.tar.gz -> libcommuni-a7b32cd.tar.gz
-https://github.com/Chatterino/qtkeychain/archive/de95462.tar.gz -> qtkeychain-de95462.tar.gz
-https://github.com/Tencent/rapidjson/archive/d87b698.tar.gz -> rapidjson-d87b698.tar.gz
-https://github.com/zaphoyd/websocketpp/archive/1b11fd3.tar.gz -> websocketpp-1b11fd3.tar.gz
-https://github.com/pajlada/serialize/archive/7d37cbf.tar.gz -> serialize-7d37cbf.tar.gz
-https://github.com/pajlada/signals/archive/25e4ec3.tar.gz -> signals-25e4ec3.tar.gz
-https://github.com/pajlada/settings/archive/04792d8.tar.gz -> settings-04792d8.tar.gz
-https://github.com/arsenm/sanitizers-cmake/archive/99e159e.tar.gz -> sanitizers-cmake-99e159e.tar.gz
-"
+EGIT_REPO_URI="https://github.com/Chatterino/chatterino2.git"
+EGIT_SUBMODULES=('*')
+EGIT_COMMIT="c8204ef7e4d799c77d98a168be7a5986b1fc082d" # 2.4.2 commit
 
-S=${WORKDIR}/chatterino2-${PV}
+#S=${WORKDIR}/chatterino2-${PV}
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-BDEPEND="dev-qt/qtsvg:5
+BDEPEND="dev-vcs/git
+	dev-qt/qtsvg:5
 	dev-qt/qtconcurrent:5
 	dev-qt/linguist-tools:5
 	dev-libs/boost"
@@ -46,6 +40,7 @@ src_prepare() {
 	ln -sr ../signals-* ./lib/signals || die
 	ln -sr ../settings-* ./lib/settings || die
 	ln -sr ../sanitizers-cmake-* ./cmake/sanitizers-cmake || die
+	ln -sr ../magic_enum-* ./lib/magic_enum || die
 	cmake_src_prepare
 }
 
