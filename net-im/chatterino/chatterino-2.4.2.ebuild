@@ -11,8 +11,6 @@ EGIT_REPO_URI="https://github.com/Chatterino/chatterino2.git"
 EGIT_SUBMODULES=('*')
 EGIT_COMMIT="c8204ef7e4d799c77d98a168be7a5986b1fc082d" # 2.4.2 commit
 
-#S=${WORKDIR}/chatterino2-${PV}
-
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -43,6 +41,15 @@ src_prepare() {
 	ln -sr ../sanitizers-cmake-* ./cmake/sanitizers-cmake || die
 	ln -sr ../magic_enum-* ./lib/magic_enum || die
 	cmake_src_prepare
+}
+
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_BUILD_TYPE=Release
+		-DUSE_SYSTEM_QTKEYCHAIN=ON
+		-DUSE_PRECOMPILED_HEADERS=OFF
+	)
+	cmake_src_configure
 }
 
 src_install() {
